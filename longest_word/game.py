@@ -1,5 +1,6 @@
 import string
 import random
+import requests
 
 class Game:
     def __init__(self):
@@ -17,4 +18,6 @@ class Game:
                 grid_letters.remove(letter)
             else:
                 return False
-        return True
+        response = requests.get(f"https://dictionary.lewagon.com/{word}")
+        result = response.json()
+        return result['found']
